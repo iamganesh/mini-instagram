@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+  <h2>Welcome, <%= me.name %></h2>
+  <%- include("flash") %>
+
+  <div class="card">
+    <a href="/posts/new">Create Post</a> |
+    <a href="/feed">Feed</a> |
+    <a href="/logout">Logout</a>
+  </div>
+</body>
+</html>

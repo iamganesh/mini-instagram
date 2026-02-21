@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feed</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <h2>Mini Instagram - Feed</h2>
+
+    <%- include("flash") %>
+
+    <div class="card topbar">
+      <div class="left">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/posts/new">Create Post</a>
+      </div>
+      <div class="right">
+        <a class="logout" href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="card sort">
+      Sort:
+      <a href="/feed?page=1&sort=newest">Newest</a> |
+      <a href="/feed?page=1&sort=oldest">Oldest</a>
+    </div>
+
+    <% posts.forEach(p => { %>
+      <div class="card">
+        <b><%= p.user.name %></b><br>
+        <small><%= new Date(p.createdAt).toLocaleString() %></small>
+
+        <p><%= p.caption %></p>
+
+        <img src="<%= p.image %>">
+
+        <% if (p.user._id.toString() === me._id.toString()) { %>
+          <div style="margin-top:10px;">
+            <a href="/posts/<%= p._id %>/edit">Edit</a>
+            <form method="POST" action="/posts/<%= p._id %>/delete" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    <% }) %>
+
+    <div class="card">
+      <% if (page > 1) { %>
+        <a href="/feed?page=<%= page - 1 %>&sort=<%= sortParam %>">Prev</a>
+      <% } %>
+
+      <span> Page <%= page %> of <%= totalPages %> </span>
+
+      <% if (page < totalPages) { %>
+        <a href="/feed?page=<%= page + 1 %>&sort=<%= sortParam %>">Next</a>
+      <% } %>
+    </div>
+
+  </div>
+</body>
+</html>

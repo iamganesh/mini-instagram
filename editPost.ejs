@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit Post</title></head>
+<body>
+  <h2>Edit Post</h2>
+  <%- include("flash") %>
+
+  <form method="POST" action="/posts/<%= post._id %>/update" class="card">
+    <input name="caption" value="<%= post.caption %>"><br><br>
+    <button type="submit">Update</button>
+  </form>
+
+  <p><a href="/feed">Back</a></p>
+</body>
+</html>

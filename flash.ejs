@@ -1,0 +1,11 @@
+<% if (success_msg && success_msg.length) { %>
+  <div class="flash success"><%= success_msg[0] %></div>
+<% } %>
+
+<% if (error_msg && error_msg.length) { %>
+  <div class="flash error"><%= error_msg[0] %></div>
+<% } %>
+
+<script>
+  setTimeout(() => document.querySelectorAll(".flash").forEach(x => x.remove()), 2500);
+</script>
